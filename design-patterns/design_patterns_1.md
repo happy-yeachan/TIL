@@ -53,6 +53,6 @@
 
 
 >참고   
-https://refactoring.guru/ko/design-patterns/what-is-pattern
+https://refactoring.guru/ko/design-patterns/what-is-pattern   
 https://effortguy.tistory.com/182   
 https://wikidocs.net/168367
