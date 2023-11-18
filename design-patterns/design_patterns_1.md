@@ -21,6 +21,7 @@
 # 디자인 패턴을 왜 알아야 할까?
 ### 1. 소통이 편해진다.
 ![Alt text](img/idk_dp.png)
+
 위는 한 블로그가 들어준 예시이다.   
 디자인 패턴을 아는 순간 대화가 짧고 명확해진다.
 ### 2. 더 새련되고 빠른 개발을 할 수  있다.
@@ -52,6 +53,6 @@
 
 
 >참고   
-https://refactoring.guru/ko/design-patterns/what-is-pattern
+https://refactoring.guru/ko/design-patterns/what-is-pattern   
 https://effortguy.tistory.com/182   
 https://wikidocs.net/168367
