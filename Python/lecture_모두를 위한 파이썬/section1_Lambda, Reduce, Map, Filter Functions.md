@@ -1,5 +1,4 @@
-# Chapter 1
-Python Advanced(1) - Lambda, Reduce, Map, Filter Functions   
+# Python Advanced(1) - Lambda, Reduce, Map, Filter Functions   
 Keyword - lambda, map, filter, reduce
 
 lambda 장점 : 익명, 힙 영역 사용 즉시 소멸, pythonic?, 파이썬 가비지 컬렉션(Count = 0)   

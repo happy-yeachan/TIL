@@ -1,5 +1,4 @@
-# Chapter 1
-Python Advanced(1) - Python Variable Scope   
+# Python Advanced(1) - Python Variable Scope   
 Keyword - scope, global, nonlocal, locals, globals..
 
 전역변수는 주로 변하지 않는 고정 값에 사용   
