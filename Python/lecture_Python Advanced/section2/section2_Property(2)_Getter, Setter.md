@@ -92,4 +92,4 @@ print('Ex2 > y : {}'.format(b.y))
 ```
 
 - 내부의 private 변수를 외부에서 사용할 때 내부의 표현을 숨기고 외부에서 읽거나 수정할 때 메소드를 활용
-- 이러한 일련의 메커니즘을 getter, setter를 사용
+- 이러한 일련의 메커니즘을 getter, setter라고 칭함.
