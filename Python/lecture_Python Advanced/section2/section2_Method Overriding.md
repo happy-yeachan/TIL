@@ -76,15 +76,13 @@ class Logger(object):
 
 class TimestampLogger(Logger):
     def log(self, msg):
-        message = "{ts} {msg}".format(ts=datetime.datetime.now(),
-                                      msg=msg)
+        message = "{ts} {msg}".format(ts=datetime.datetime.now(), msg=msg)
         # super().log(message)
         super(TimestampLogger, self).log(message)
 
 class DateLogger(Logger):
     def log(self, msg):
-        message = "{ts} {msg}".format(ts=datetime.datetime.now().strftime('%Y-%m-%d'),
-                                      msg=msg)
+        message = "{ts} {msg}".format(ts=datetime.datetime.now().strftime('%Y-%m-%d'), msg=msg)
         # super().log(message)
         super(DateLogger, self).log(message)
 
