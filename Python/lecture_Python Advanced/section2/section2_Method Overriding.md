@@ -95,3 +95,4 @@ print('Ex3 > ', l.log('Called logger.'))
 print('Ex3 > ', t.log('Called timestamp logger.'))
 print('Ex3 > ', d.log('Called date logger.'))
 ```
+- 기본 클래스 사용법 숙지 
