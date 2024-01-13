@@ -77,6 +77,7 @@ class Logger(object):
 class TimestampLogger(Logger):
     def log(self, msg):
         message = "{ts} {msg}".format(ts=datetime.datetime.now(), msg=msg)
+        # 부모의 log함수 호출법
         # super().log(message)
         super(TimestampLogger, self).log(message)
 
