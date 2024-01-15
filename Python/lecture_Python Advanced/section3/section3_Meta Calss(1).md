@@ -8,7 +8,7 @@ Keyword - Class of Class, Type, Meta Class, Custom Meta Class
 4. 커스텀 클래스 -> 검증클래스 등
 5. 엄격한 Class 사용 요구, 메소드 오버라이드 요구
 
-## Ex1
+## Ex1 - type
 ```python
 # type 예제
 
