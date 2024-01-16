@@ -18,15 +18,15 @@ class SampleA(): # Class == Object
 obj1 = SampleA() # 변수에 할당, 복사 가능, 새로운 속성, 함수의 인자로 넘기기 가능
 
 # obj1 -> SampleA instance
-# SampleA -> type metaclass
-# type -> type metaclass
+# SampleA -> type meta class
+# type -> type meta class
 print('Ex1 > ', obj1.__class__)
 print('Ex1 > ', type(obj1))
 print('Ex1 > ', obj1.__class__ is type(obj1))
 
 print()
 ```
-
+- type이라는 클래스가 모든 클래스의 메타 클래스 ㄷㄷ 
 ## Ex2
 ```python
 # type meta (Ex1 증명)
