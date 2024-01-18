@@ -40,7 +40,7 @@ s1 = Sample1()
 s1.name = "Descriptor Test1"
 
 # 예외 발생
-# s1.name = 7
+# s1.name = 10
 
 # attr 확인
 # __get__ 호출
@@ -52,11 +52,8 @@ del s1.name
 # 재확인
 # __get__ 호출
 print('Ex1 > ', s1.name)
-
-print()
-print()
-
 ```
+
 ## Ex2 - Property 클래스 사용 Descriptor 직접 구현
 ```python
 # class property(fget=None, fset=None, fdel=None, doc=None)
