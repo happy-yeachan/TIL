@@ -103,5 +103,6 @@ del s2.name
 print('Ex2 > ', s2.name)
 
 # doc 확인
+# 다른사람이 이 descriptor를 사용하기 위한 설명서
 print('Ex2 > ', DescriptorEx2.name.__doc__)
 ```
