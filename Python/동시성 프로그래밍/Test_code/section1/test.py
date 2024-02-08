@@ -15,7 +15,7 @@ class test(object):
         )
 
     def __set__(self, obj, name):
-        print("Set method called.")
+        print("Set method called.", obj)
         if isinstance(name, str):
             self.name = name
         else:
