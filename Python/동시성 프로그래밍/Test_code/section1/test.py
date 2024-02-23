@@ -1,52 +1,28 @@
-def main():
-    """dfadsf"""
-    print("dsfa")
+import time
+import asyncio
 
 
-class test(object):
-    def __init__(self, name="Default"):
-        self.name = name
-
-    def __get__(self, obj, objtype):
-        return (
-            "Get method called. -> self : {}, obj : {}, objtype : {}, name : {}".format(
-                self, obj, objtype, self.name
-            )
-        )
-
-    def __set__(self, obj, name):
-        print("Set method called.", obj)
-        if isinstance(name, str):
-            self.name = name
-        else:
-            raise TypeError("Name should be string")
-
-    def __delete__(self, obj):
-        print("Delete method called.")
-        self.name = None
+async def delivery(name, mealtime):
+    print(f"{name}에게 배달 완료!")
+    await asyncio.sleep(mealtime)
+    print(f"{name} 식사 완료, {mealtime}시간 소요...")
+    print(f"{name} 그릇 수거 완료")
+    return mealtime
 
 
-class Sample1(object):
-    name = test()
+async def main():
+
+    result = await asyncio.gather(
+        delivery("A", 10),
+        delivery("B", 3),
+        delivery("C", 4),
+    )
+
+    print(result)
 
 
-s1 = Sample1()
-
-# __set__ 호출
-s1.name = "Descriptor Test1"
-
-# 예외 발생
-# s1.name = 10
-
-# attr 확인
-# __get__ 호출
-print("Ex1 > ", s1.name)
-
-# __delete__ 호출
-del s1.name
-
-# 재확인
-# __get__ 호출
-print("Ex1 > ", s1.name)
-
-print("sdfasd")
+if __name__ == "__main__":
+    start = time.time()
+    asyncio.run(main())
+    end = time.time()
+    print(end - start)

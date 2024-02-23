@@ -15,3 +15,81 @@
 
 ### 블로킹 
 - 바운드에 의해 코드가 멈추게 되는 현상이 일어나는 것
+
+## 동기(Sync) vs 비동기(Async)
+### 동기(Sync)
+- 코드가 동기적으로 동작한다 => 코드가 반드시 작성된 순서 그대로 실행된다.  
+- 요청을 하면 응답을 받고 다음 요청을 보내는 구조
+- 일반적인 파이썬 함수는 동기적임.
+
+예시코드
+```python
+import time
+
+
+def delivery(name, mealtime):
+    print(f"{name}에게 배달 완료!")
+    time.sleep(mealtime)
+    print(f"{name} 식사 완료, {mealtime}시간 소요...")
+    print(f"{name} 그릇 수거 완료")
+
+
+def main():
+    delivery("A", 10)
+    delivery("B", 3)
+    delivery("C", 4)
+
+
+if __name__ == "__main__":
+    start = time.time()
+    print(main())  # None
+    end = time.time()
+    print(end - start)
+
+```
+![Alt text](img/sync.png)
+
+=> 17초가 소요됨
+
+### 비동기(Async)
+- 코드가 비동기적으로 동작한다 => 코드가 반드시 작성된 순서 그대로 실행되는 것이 아니다. 
+- 요청부터 다 보내두고 그 다음 응답을 받는 구조
+
+예시코드
+```python
+import time
+import asyncio
+
+
+async def delivery(name, mealtime):
+    print(f"{name}에게 배달 완료!")
+    await asyncio.sleep(mealtime)
+    print(f"{name} 식사 완료, {mealtime}시간 소요...")
+    print(f"{name} 그릇 수거 완료")
+    return mealtime
+
+
+async def main():
+
+    result = await asyncio.gather(
+        delivery("A", 10),
+        delivery("B", 3),
+        delivery("C", 4),
+    )
+
+    print(result)
+
+
+if __name__ == "__main__":
+    start = time.time()
+    asyncio.run(main())
+    end = time.time()
+    print(end - start)
+
+```
+![Alt text](img/async.png)
+
+=> 10초 소요
+
+#### 무작정 비동기 구조를 만든다고 좋은게 아님
+#### 요청을 보내고 응답을 받는 구조에서 비동기 함수가 유용하게 작용함
