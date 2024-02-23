@@ -107,3 +107,63 @@ if __name__ == "__main__":
 - 해당 로직들이 진행되는 중간에 멈추어서 특정 위치로 돌아 갔다 다시 코루틴에서 진행되었던 위치로 돌아와 나머지 로직을 수행할 수 있다.
 - 파이썬 비동기 함수는 코루틴 함수로 만들 수 있다.
 - https://docs.python.org/ko/3/library/asyncio-task.html 참고
+
+예제코드   
+
+동기
+```python
+import requests
+import time
+
+
+def fetcher(session, url):
+    with session.get(url) as response:
+        return response.text
+
+
+def main():
+    urls = ["https://naver.com", "https://google.com", "https://instagram.com"] * 10
+
+    with requests.Session() as session:
+        result = [fetcher(session, url) for url in urls]
+        print(result)
+
+
+if __name__ == "__main__":
+    start = time.time()
+    main()
+    end = time.time()
+    print(end - start)  # 12
+
+```
+
+코루틴 활용
+```python
+# https://docs.aiohttp.org/en/stable/
+# pip install aiohttp~=3.7.3
+
+
+import aiohttp
+import time
+import asyncio
+
+
+async def fetcher(session, url):
+    async with session.get(url) as response:
+        return await response.text()
+
+
+async def main():
+    urls = ["https://naver.com", "https://google.com", "https://instagram.com"] * 10
+
+    async with aiohttp.ClientSession() as session:
+        result = await asyncio.gather(*[fetcher(session, url) for url in urls]) # 언팩킹 
+        print(result)
+
+
+if __name__ == "__main__":
+    start = time.time()
+    asyncio.run(main())
+    end = time.time()
+    print(end - start)  # 4.8
+```
