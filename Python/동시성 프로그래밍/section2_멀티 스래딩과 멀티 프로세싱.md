@@ -21,3 +21,64 @@
     - 자원의 낭비를 막고 효율성 향상
     - 한 스레드에 문제가 생기면 전체 프로세스에 영향을 미친다.
 - 사용자 수준 스레드와 커널 수준 스레드 두 종류가 존재
+
+## 동시성(병행성) VS 병렬성
+### 동시성(concurrency)
+동시성이란 한 번에 여러 작업을 동시에 다루는 것을 의미   
+-> 한번의 여러 작업을 스위칭을 하며 진행하는 형식
+![Alt text](img/concurrency.png)
+
+동시성은 논리적 개념으로 멀티 스레딩에서 사용되기도 하고 싱글 스레드에서 사용되기도 한다.   
+또한 싱글 코어 뿐만 아니라 멀티 코어에서도 각각의 코어가 동시성을 사용할 수 있음.
+
+### 병렬성(Parallelism)
+병렬성은 한 번에 여러 작업을 병렬적으로 처리하는 것을 의미   
+-> 혼자가 아닌 작업을 수행하는 무언가 더 추가되어 다 같이 동시에 일을 진행하는 형식
+![Alt text](img/parallelism.png)
+
+병렬성은 물리적 개념으로 예시에서 여러 로봇들이 여러 작업을 병렬로 수행한 것처럼, 멀티 코어에서 여러 작업을 병렬적으로 수행함.
+
+- 멀티 스레딩과 멀티 프로세싱은 병렬성이라고 보면 됨!!
+- 근데 파이썬에서는 멀티 스레드가 병렬적으로 동작 할 수 없대 왜??
+
+멀티 스레딩 예제 코드
+```python
+# https://docs.python.org/3.7/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor
+import requests
+import time
+import os
+import threading
+from concurrent.futures import ThreadPoolExecutor
+
+
+def fetcher(params):
+    session = params[0]
+    url = params[1]
+    print(f"{os.getpid()} process | {threading.get_ident()} url : {url}")
+    with session.get(url) as response:
+        return response.text
+
+
+def main():
+    urls = ["https://google.com", "https://apple.com"] * 50
+
+    executor = ThreadPoolExecutor(max_workers=10)
+
+    with requests.Session() as session:
+        # result = [fetcher(session, url) for url in urls]
+        # print(result)
+        params = [(session, url) for url in urls]
+        results = list(executor.map(fetcher, params))
+        print(results)
+
+
+if __name__ == "__main__":
+    start = time.time()
+    main()
+    end = time.time()
+    print(end - start)  # 6.8
+
+```
+
+- 멀티 스레딩을 하는 것보다 코루틴 함수를 활용하는 것이 더 좋음
+- 스레딩을 만들고 하는 것들도 다 연산이기 때문에!!
