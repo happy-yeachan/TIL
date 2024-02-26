@@ -25,8 +25,8 @@ async def img_downloader(session, img):
 async def fetch(session, url, i):
     print(i + 1)
     headers = {
-        "X-Naver-Client-Id": id,
-        "X-Naver-Client-Secret": pas,
+        "X-Naver-Client-Id": userid,
+        "X-Naver-Client-Secret": userpass,
     }
     async with session.get(url, headers=headers) as response:
         result = await response.json()
