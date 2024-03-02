@@ -9,8 +9,14 @@ app = FastAPI()
 templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
 
-@app.get("/items/{id}", response_class=HTMLResponse)
-async def read_item(request: Request, id: str):
+@app.get("/", response_class=HTMLResponse)
+async def root(request: Request):
     return templates.TemplateResponse(
-        request=request, name="items.html", context={"id": id, "data" : "hello fastapi"}
+        request=request, name="index.html", context={"title": "콜렉터 북북이"}
+    )
+
+@app.get("/search", response_class=HTMLResponse)
+async def search(request: Request, q: str):
+    return templates.TemplateResponse(
+        request=request, name="index.html", context={"title": "콜렉터 북북이", "keyword": q}
     )

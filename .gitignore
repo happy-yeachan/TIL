@@ -195,3 +195,4 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode
 
 Python/동시성 프로그래밍/Test_codesecrets.py
+secrets.json
